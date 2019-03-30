@@ -1,19 +1,33 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func main() {
 	nums1 := []int{0}
 	nums2 := []int{1}
-	merge(nums1, len(nums1)-len(nums2), nums2, len(nums2))
+	merge2(nums1, len(nums1)-len(nums2), nums2, len(nums2))
 }
 
+// 使用go-sort包排序
+func merge2(nums1 []int, m int, nums2 []int, n int) {
+	for i := 0; i < n; i++ {
+		nums1[m+i] = nums2[i]
+	}
+
+	sort.Sort(sort.IntSlice(nums1))
+
+	fmt.Println(nums1)
+}
+
+// 自己的原生写法
 // 输入:
 // nums1 = [1,2,3,0,0,0], m = 3
 // nums2 = [2,5,6],       n = 3
-
 // 输出: [1,2,2,3,5,6]
-func merge(nums1 []int, m int, nums2 []int, n int) {
+func merge1(nums1 []int, m int, nums2 []int, n int) {
 	nonZero := 0
 	for i, _ := range nums1 {
 		if nums1[i] != 0 {
