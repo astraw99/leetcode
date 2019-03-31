@@ -117,7 +117,9 @@ func singleNumber1(nums []int) int {
 
 // singleNumber2 只出现一次的数
 func singleNumber2(nums []int) int {
-	// 零和任何数异或都等于任何数, 一个数异或两次就等于0, 又本题中除一个之外每个元素都出现两次 所以用循环异或所有数就等于 只出现一次的那个数
+	// 零和任何数异或都等于任何数, 一个数异或两次就等于0
+	// 本题中除一个之外每个元素都出现两次
+	// 所以用循环异或所有数就等于 只出现一次的那个数
 	ret := 0
 	for _, v := range nums {
 		ret ^= v
