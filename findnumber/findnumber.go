@@ -21,36 +21,6 @@ func main() {
 	fmt.Printf("total time(ns): %d", endTime-startTime)
 }
 
-func merge(nums1 []int, m int, nums2 []int, n int) []int {
-	//x数组，i：x数组的起始下标
-	//y数组，j：y数组的起始下标
-	//说明：x和y数组都是有序的数组
-	z := make([]int, m+n) //创建一个大小为nums1len+nums2len的数组切片
-	k := 0                              //数组切片z的下标
-	i, j := 0, 0
-	for i < m && j < n {
-		if nums1[i] < nums2[j] { //把小数放在数组切片z里
-			z[k] = nums1[i]
-			i++
-		} else {
-			z[k] = nums2[j]
-			j++
-		}
-		k++
-	}
-	for i != m { //把nums1到nums1len-1的数据也存入z中
-		z[k] = nums1[i]
-		k++
-		i++
-	}
-	for j != n {
-		z[k] = nums2[j]
-		k++
-		j++
-	}
-	return z
-}
-
 // searchMatrix1 二维矩阵搜索目标值
 func searchMatrix1(matrix [][]int, target int) bool {
 	ret := false
@@ -91,7 +61,7 @@ func searchMatrix2(matrix [][]int, target int) bool {
 	return false
 }
 
-// majorityElement1 求众数1
+// majorityElement1 求众数1：众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素
 func majorityElement1(nums []int) int {
 	n := len(nums)
 
@@ -111,7 +81,7 @@ func majorityElement1(nums []int) int {
 	return nums[0]
 }
 
-// majorityElement2 求众数2
+// majorityElement2 求众数2：众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素
 func majorityElement2(nums []int) int {
 	middle := len(nums) / 2
 	equalMap := make(map[int]int, middle)
