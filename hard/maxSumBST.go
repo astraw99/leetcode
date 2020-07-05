@@ -36,6 +36,7 @@ type TreeNode struct {
 var max int
 
 // maxSumBST [LeetCode #1373]
+// todo 没看懂？？ 请求指导 -- 20.06.27
 // 给你一棵以 root 为根的 二叉树 ，请你返回 任意 二叉搜索子树的最大键值和。
 // 二叉搜索树的定义如下：
 // 任意节点的左子树中的键值都 小于 此节点的键值。
@@ -50,7 +51,7 @@ func maxSumBST(root *TreeNode) int {
 	return max
 }
 
-// 没看懂？？ 请求指导 -- 20.06.27
+// validBST
 func validBST(curNode *TreeNode) (int, int, bool, int) {
 	ret := true
 	sum := curNode.Val
