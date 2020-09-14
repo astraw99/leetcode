@@ -38,7 +38,7 @@ func exist(board [][]byte, word string) bool {
 
 		visited[i][j] = true
 		defer func() {
-			visited[i][j] = false
+			visited[i][j] = false // 回溯重置状态
 		}()
 
 		directions := []pair{{-1, 0}, {1, 0}, {0, -1}, {0, 1}}

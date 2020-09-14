@@ -22,12 +22,13 @@ func main() {
 		Right: nil,
 	}
 
-	fmt.Println(largestValues(root))
+	fmt.Println(largestValuesBFS(root))
+	fmt.Println(largestValuesDFS(root))
 }
 
 // largestValues 您需要在二叉树的每一行中找到最大的值。
 // BFS 广度优先搜索
-func largestValues(root *TreeNode) []int {
+func largestValuesBFS(root *TreeNode) []int {
 	var res []int
 	if root == nil {
 		return res
@@ -57,7 +58,8 @@ func largestValues(root *TreeNode) []int {
 
 	return res
 
-	/*res := make([]int, 0)
+	/*// self code
+	res := make([]int, 0)
 	if root == nil {
 		return res
 	}
@@ -84,7 +86,7 @@ func largestValues(root *TreeNode) []int {
 	return res*/
 }
 
-// DFS_largestValues 深度优先搜索
+// largestValuesDFS 深度优先搜索
 func largestValuesDFS(root *TreeNode) []int {
 	var helper func(root *TreeNode, level int)
 	var res []int
@@ -111,34 +113,4 @@ func max(x, y int) int {
 	}
 
 	return y
-}
-
-func maxNode(leftNode, rightNode *TreeNode) int {
-
-	leftVal, rightVal := 0, 0
-	if leftNode == nil && rightNode == nil {
-		return 0
-	}
-
-	if leftNode == nil && rightNode != nil {
-		return rightNode.Val
-	}
-
-	if leftNode != nil && rightNode == nil {
-		return leftNode.Val
-	}
-
-	if leftNode.Left == nil && leftNode.Right == nil {
-		leftVal = leftNode.Val
-	}
-
-	if rightNode.Left == nil && rightNode.Right == nil {
-		rightVal = rightNode.Val
-	}
-
-	if leftVal < rightVal {
-		return rightVal
-	}
-
-	return leftVal
 }
