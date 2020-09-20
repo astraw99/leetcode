@@ -25,3 +25,15 @@ func search(nums []int, target int) int {
 
 	return -1
 }
+
+func search2(nums []int, target int) int {
+	res := -1
+	for i := range nums {
+		if nums[i] == target {
+			res = i
+			break
+		}
+	}
+
+	return res
+}
