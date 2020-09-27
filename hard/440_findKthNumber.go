@@ -15,5 +15,7 @@ func main() {
 func findKthNumber(n int, k int) int {
 	var res int
 
+	// todo
+
 	return res
 }
