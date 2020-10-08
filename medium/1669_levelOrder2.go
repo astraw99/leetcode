@@ -55,14 +55,14 @@ func levelOrder2(root *TreeNode) [][]int {
 }
 
 // other's code
-var ret [][]int
+var res [][]int
 
 func levelOrder2_(root *TreeNode) [][]int {
 	if root == nil {
 		return nil
 	}
-	ret = make([][]int, 1)
-	ret[0] = []int{root.Val}
+	res = make([][]int, 1)
+	res[0] = []int{root.Val}
 
 	if root.Left != nil {
 		subFunc(root.Left, 1)
@@ -71,15 +71,15 @@ func levelOrder2_(root *TreeNode) [][]int {
 		subFunc(root.Right, 1)
 	}
 
-	return ret
+	return res
 }
 
 func subFunc(root *TreeNode, depth int) {
-	fmt.Println(ret)
-	if depth >= len(ret) {
-		ret = append(ret, []int{root.Val})
+	fmt.Println(res)
+	if depth >= len(res) {
+		res = append(res, []int{root.Val})
 	} else {
-		ret[depth] = append(ret[depth], root.Val)
+		res[depth] = append(res[depth], root.Val)
 	}
 	if root.Left != nil {
 		subFunc(root.Left, depth+1)
