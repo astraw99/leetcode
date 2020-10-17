@@ -11,6 +11,7 @@ func main() {
 	fmt.Println(maxValue(grid))
 }
 
+// maxValue 最大礼物价值
 func maxValue(grid [][]int) int {
 	var res int
 	if len(grid) == 0 {
