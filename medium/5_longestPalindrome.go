@@ -19,6 +19,7 @@ func longestPalindrome(s string) string {
 		dp[i] = make([]bool, n)
 	}
 
+	// dp[i][j]: s 的第 i 到 j 个字母组成的串是否为回文串
 	for l := 0; l < n; l++ {
 		for i := 0; i+l < n; i++ {
 			j := i + l
