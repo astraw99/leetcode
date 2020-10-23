@@ -1,14 +1,37 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	nums := []int{3, -1, 4}
 	fmt.Println(maxProduct(nums))
+	fmt.Println(maxProduct_(nums))
+}
+
+func maxProduct(nums []int) int {
+	var res int
+	if len(nums) == 0 {
+		return 0
+	}
+	if len(nums) == 1 {
+		return nums[0]
+	}
+
+	minVal, maxVal, res := nums[0], nums[0], nums[0]
+	for i := 1; i < len(nums); i++ {
+		tempMin := minVal
+		minVal = min(min(nums[i], tempMin*nums[i]), maxVal*nums[i])
+		maxVal = max(max(nums[i], tempMin*nums[i]), maxVal*nums[i])
+		res = max(res, maxVal)
+	}
+
+	return res
 }
 
 // self wrong!!
-func maxProduct(nums []int) int {
+func maxProduct_(nums []int) int {
 	var res int
 	if len(nums) == 0 {
 		return 0
@@ -19,11 +42,11 @@ func maxProduct(nums []int) int {
 
 	var negativeCnt int
 	var negativePos []int
-	var max int
+	var maxVal int
 	res = 1
 	for i := 0; i < len(nums); i++ {
 		if nums[i] == 0 {
-			return maxFunc(maxFunc(maxProduct(nums[:i]), 0), maxProduct(nums[i+1:]))
+			return max(max(maxProduct_(nums[:i]), 0), maxProduct_(nums[i+1:]))
 		}
 
 		if nums[i] < 0 {
@@ -32,22 +55,22 @@ func maxProduct(nums []int) int {
 		}
 
 		res *= nums[i]
-		if max < res {
-			max = res
+		if maxVal < res {
+			maxVal = res
 		}
 	}
 
 	if negativeCnt%2 == 0 {
-		return max
+		return maxVal
 	}
 
 	if len(negativePos) > 0 {
 		//maxPos := []int{0, negativePos[0], negativePos[len(negativePos) - 1], len(nums) - 1}
-		max = maxFunc(sliceProduct(nums[:negativePos[0]+1]), sliceProduct(nums[negativePos[0]+1:negativePos[len(negativePos)-1]+1]))
-		max = maxFunc(max, sliceProduct(nums[negativePos[len(negativePos)-1]:]))
+		maxVal = max(sliceProduct(nums[:negativePos[0]+1]), sliceProduct(nums[negativePos[0]+1:negativePos[len(negativePos)-1]+1]))
+		maxVal = max(maxVal, sliceProduct(nums[negativePos[len(negativePos)-1]:]))
 	}
 
-	return max
+	return maxVal
 }
 
 func sliceProduct(nums []int) int {
@@ -59,8 +82,16 @@ func sliceProduct(nums []int) int {
 	return res
 }
 
-func maxFunc(a, b int) int {
+func max(a, b int) int {
 	if a > b {
+		return a
+	}
+
+	return b
+}
+
+func min(a, b int) int {
+	if a < b {
 		return a
 	}
 
