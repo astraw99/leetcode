@@ -64,16 +64,16 @@ func findTargetSumWaysDfs(nums []int, S int) int {
 	}
 
 	var cnt int
-	var dfs func(sum, i int)
-	dfs = func(sum, i int) {
+	var dfs func(i, sum int)
+	dfs = func(i, sum int) {
 		if i == len(nums) {
 			if sum == S {
 				cnt++
 			}
 			return
 		} else {
-			dfs(sum+nums[i], i+1)
-			dfs(sum-nums[i], i+1)
+			dfs(i+1, sum+nums[i])
+			dfs(i+1, sum-nums[i])
 		}
 	}
 
