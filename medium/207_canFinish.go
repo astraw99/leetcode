@@ -14,7 +14,7 @@ func main() {
 
 func canFinish(numCourses int, prerequisites [][]int) bool {
 	var (
-		edges  = make([][]int, numCourses)
+		edges  = make([][]int, numCourses) // [first][]{indegs}
 		indegs = make([]int, numCourses)
 		result []int
 	)
