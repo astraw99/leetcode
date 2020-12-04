@@ -8,6 +8,7 @@ func main() {
 	fmt.Println(search(nums, target))
 }
 
+// binarySearch 二分查找
 func search(nums []int, target int) int {
 	left := 0
 	right := len(nums) - 1

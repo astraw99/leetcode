@@ -5,8 +5,30 @@ import "fmt"
 func main() {
 	nums := []int{1, 2, 3, 4}
 	fmt.Println(subsets(nums))
+	fmt.Println(subsetsRecursion(nums))
 	fmt.Println(subsetsMy(nums))
 	fmt.Println(subsetsDFS(nums))
+}
+
+// why not work??
+func subsetsRecursion(nums []int) [][]int {
+	var res [][]int
+	if len(nums) == 0 {
+		return res
+	}
+
+	last := nums[len(nums)-1]
+	nums = nums[:len(nums)-1]
+	res = subsetsRecursion(nums)
+	//fmt.Println(last, nums, res)
+
+	for i := 0; i < len(res); i++ {
+		res = append(res, res[i])
+		res[len(res)-1] = append(res[len(res)-1], last)
+		//res[i] = append(res[i], last)
+	}
+
+	return res
 }
 
 func subsetsMy(nums []int) [][]int {
