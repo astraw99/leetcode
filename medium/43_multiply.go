@@ -9,6 +9,37 @@ func main() {
 	s1 := "123"
 	s2 := "456"
 	fmt.Println(multiply(s1, s2))
+	fmt.Println(strMultiply(s1, s2))
+}
+
+func strMultiply(num1, num2 string) string {
+	var res string
+
+	// num1[i] * num[j] 值必定在resArr[i+j] resArr[i+j+1]上，i+j+1 存储低位
+	resArr := make([]int, len(num1)+len(num2))
+
+	for i := len(num1) - 1; i >= 0; i-- {
+		for j := len(num2) - 1; j >= 0; j-- {
+			temp := int(num1[i]-'0')*int(num2[j]-'0') + resArr[i+j+1]
+			resArr[i+j+1] = temp % 10
+			resArr[i+j] += temp / 10
+		}
+	}
+
+	i := 0
+	for ; i < len(resArr); i++ {
+		if resArr[i] != 0 {
+			break
+		}
+	}
+	for ; i < len(resArr); i++ {
+		res += string(resArr[i] + '0')
+	}
+	if res == "" {
+		return "0"
+	}
+
+	return res
 }
 
 func multiply(num1 string, num2 string) string {
