@@ -49,6 +49,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	return dummy.Next
 }
 
+// self wrong!!
 func addTwoNumbers_(l1 *ListNode, l2 *ListNode) *ListNode {
 	var head, tail *ListNode
 	if l1 == nil && l2 == nil {

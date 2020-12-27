@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(divide(-2147483648, -1))
+	fmt.Println(divide(-56789, -12))
 }
 
 // divide 给定两个整数，被除数 dividend 和除数 divisor
@@ -21,6 +21,7 @@ func divide(dividend int, divisor int) int {
 	for i := 31; i >= 0; i-- {
 		if dividend>>i >= divisor {
 			res += 1 << i
+			fmt.Println(dividend>>i, divisor<<i)
 			dividend -= divisor << i // divisor << i == divisor * (1 << i)
 		}
 	}
