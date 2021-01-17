@@ -8,6 +8,7 @@ func main() {
 	fmt.Println(search(nums, target))
 }
 
+// search 旋转有序数组(无重复值)
 func search(nums []int, target int) int {
 	if len(nums) == 0 {
 		return -1

@@ -21,7 +21,7 @@ func divide(dividend int, divisor int) int {
 	for i := 31; i >= 0; i-- {
 		if dividend>>i >= divisor {
 			res += 1 << i
-			fmt.Println(dividend>>i, divisor<<i)
+			//fmt.Println(dividend>>i, divisor<<i)
 			dividend -= divisor << i // divisor << i == divisor * (1 << i)
 		}
 	}

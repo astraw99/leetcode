@@ -16,7 +16,7 @@ func canJump(nums []int) bool {
 	right := 0
 	for i := 0; i < len(nums); i++ {
 		// 如果跳不到位置i，直接返回false
-		if i > right {
+		if right < i {
 			return false
 		}
 

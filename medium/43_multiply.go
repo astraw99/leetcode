@@ -26,6 +26,7 @@ func strMultiply(num1, num2 string) string {
 		}
 	}
 
+	// 去除前导 0
 	i := 0
 	for ; i < len(resArr); i++ {
 		if resArr[i] != 0 {
@@ -33,7 +34,7 @@ func strMultiply(num1, num2 string) string {
 		}
 	}
 	for ; i < len(resArr); i++ {
-		res += string(resArr[i] + '0')
+		res += string(resArr[i] + '0') // 转换成 ASCII
 	}
 	if res == "" {
 		return "0"
