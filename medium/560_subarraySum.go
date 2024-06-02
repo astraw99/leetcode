@@ -9,6 +9,7 @@ func main() {
 	fmt.Println(subarraySum(nums, k))
 }
 
+// 前缀和 + 哈希表
 func subarraySumPre(nums []int, k int) int {
 	if len(nums) == 0 {
 		return 0

@@ -52,7 +52,7 @@ func (this *LRUCache) Put(key int, value int) {
 	// not exist
 	if len(this.MapData) >= this.Cap {
 		delKey := this.Keys[len(this.Keys)-1]
-		this.Keys = DelKey(this.Keys, key)
+		this.Keys = DelKey(this.Keys, delKey)
 		delete(this.MapData, delKey)
 	}
 

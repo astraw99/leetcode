@@ -12,34 +12,36 @@ func sortArray(nums []int) []int {
 	nums = mergeSort(nums)
 	nums = bubbleSort(nums)
 	nums = bubbleSort2(nums)
+	nums = selectSort(nums)
 
 	return nums
 }
 
-func bubbleSort(nums []int) []int {
+func quickSort(nums []int, left, right int) []int {
 	if len(nums) <= 1 {
 		return nums
 	}
 
-	// 每一轮确定最大值
-	for i := 0; i < len(nums); i++ {
-		for j := 0; j < len(nums)-1-i; j++ {
-			if nums[j] > nums[j+1] {
-				nums[j], nums[j+1] = nums[j+1], nums[j]
-			}
-		}
-		fmt.Println(nums)
+	if left >= right {
+		return nums
 	}
 
-	// 每一轮确定最小值
-	/*for i := 0; i < len(nums); i++ {
-		for j := i + 1; j < len(nums); j++ {
-			if nums[i] > nums[j] {
-				nums[i], nums[j] = nums[j], nums[i]
-			}
+	i, j := left, right
+	pivot := nums[i]
+	for i < j {
+		for i < j && nums[j] >= pivot {
+			j--
 		}
-		fmt.Println(nums)
-	}*/
+		nums[i] = nums[j]
+		for i < j && nums[i] <= pivot {
+			i++
+		}
+		nums[j] = nums[i]
+	}
+
+	nums[i] = pivot
+	quickSort(nums, left, i-1)
+	quickSort(nums, i+1, right)
 
 	return nums
 }
@@ -81,31 +83,30 @@ func merge(nums1, nums2 []int) []int {
 	return res
 }
 
-func quickSort(nums []int, left, right int) []int {
+func bubbleSort(nums []int) []int {
 	if len(nums) <= 1 {
 		return nums
 	}
 
-	if left >= right {
-		return nums
+	// 每一轮确定最大值
+	for i := 0; i < len(nums); i++ {
+		for j := 0; j < len(nums)-1-i; j++ {
+			if nums[j] > nums[j+1] {
+				nums[j], nums[j+1] = nums[j+1], nums[j]
+			}
+		}
+		fmt.Println(nums)
 	}
 
-	i, j := left, right
-	pivot := nums[i]
-	for i < j {
-		for i < j && nums[j] >= pivot {
-			j--
+	// 每一轮确定最小值
+	/*for i := 0; i < len(nums); i++ {
+		for j := i + 1; j < len(nums); j++ {
+			if nums[i] > nums[j] {
+				nums[i], nums[j] = nums[j], nums[i]
+			}
 		}
-		nums[i] = nums[j]
-		for i < j && nums[i] <= pivot {
-			i++
-		}
-		nums[j] = nums[i]
-	}
-
-	nums[i] = pivot
-	quickSort(nums, left, i-1)
-	quickSort(nums, i+1, right)
+		fmt.Println(nums)
+	}*/
 
 	return nums
 }
@@ -126,6 +127,26 @@ func bubbleSort2(nums []int) []int {
 
 		if isSort {
 			break
+		}
+	}
+
+	return nums
+}
+
+func selectSort(nums []int) []int {
+	if len(nums) <= 1 {
+		return nums
+	}
+
+	for i := 0; i < len(nums); i++ {
+		var minIndex = i
+		for j := i + 1; j < len(nums); j++ {
+			if nums[j] < nums[minIndex] {
+				minIndex = j
+			}
+		}
+		if minIndex > i {
+			swap(nums, i, minIndex)
 		}
 	}
 
